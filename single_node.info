@@ -1,0 +1,5 @@
+name = [Test task] Alone node at front page
+description = Displays only one node at front page if `Promoted to front page` option was checked during node creation or update
+package = Stuff
+core = 7.x
+dependencies[] = trigger

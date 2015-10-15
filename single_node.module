@@ -1,0 +1,23 @@
+<?php
+
+/**
+ * @package     Stuff
+ * @author      Pontorez <pontorez@pontorez.com>
+ * @license     http://www.wtfpl.net/txt/copying/ WTFPL License
+ */
+
+function single_node_node_insert($node) {
+  _single_node_make_node_alone_at_front_page($node);
+}
+
+function single_node_node_update($node) {
+  _single_node_make_node_alone_at_front_page($node);
+}
+
+
+function _single_node_make_node_alone_at_front_page($node) {
+  if ($node->promote) {
+    db_query('UPDATE node SET promote = 0 WHERE nid != :nid', ['nid' => $node->nid]);
+    db_query('UPDATE node_revision SET promote = 0 WHERE nid != :nid', ['nid' => $node->nid]);
+  }
+}
